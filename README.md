@@ -175,6 +175,186 @@ haytham@server:~/git-sami$ git cat-file -p c7a6
 100644 blob 16000abd9a2251fd921aa3917e1a3f1f32886747    image.png
 ```
 
-### gir is working as linked list
+### git is working as linked list
 <img width="727" height="282" alt="image" src="https://github.com/user-attachments/assets/4cf6f1ee-2cac-4456-8403-a7536d267117" />
 
+### LAB03
+```bash
+haytham@server:~/git-sami$ vim file.txt 
+haytham@server:~/git-sami$ git status -s
+ M file.txt
+haytham@server:~/git-sami$ cat file.txt 
+Hello, Git
+Second line in file.txt
+Third line in file.txt
+haytham@server:~/git-sami$ git status -s
+ M file.txt
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ ### to know the diff
+haytham@server:~/git-sami$ git diff
+diff --git a/file.txt b/file.txt
+index b7aec52..8481662 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1,3 @@
+ Hello, Git
++Second line in file.txt
++Third line in file.txt
+
+
+haytham@server:~/git-sami$ ## if you make git add ., there is no difference
+haytham@server:~/git-sami$ git status 
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+haytham@server:~/git-sami$ git add .
+haytham@server:~/git-sami$ git diff
+haytham@server:~/git-sami$
+
+haytham@server:~/git-sami$ ## to get difference between working dir and staging
+haytham@server:~/git-sami$ git diff --staged
+diff --git a/file.txt b/file.txt
+index b7aec52..8481662 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1,3 @@
+ Hello, Git
++Second line in file.txt
++Third line in file.txt
+haytham@server:~/git-sami$
+
+
+haytham@server:~/git-sami$ ## to make the commit open with vim
+haytham@server:~/git-sami$ git config --global core.edior vim 
+haytham@server:~/git-sami$ git commit
+[main f470813] Third line added
+ 1 file changed, 2 insertions(+)
+haytham@server:~/git-sami$ git log 
+commit f4708131848cae95c640b9ce73b75676d1598b88 (HEAD -> main)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:12:20 2026 +0300
+
+    Third line added
+
+commit 33ca0b34963ecd89db14227a477ed93fe2c916f8
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:01:12 2026 +0300
+
+    Added file.txt
+
+commit a0147301319dd4751004b5fef3cce6f4cc3a6614 (origin/main, origin/HEAD)
+Author: Haytham <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 21:49:10 2026 +0300
+
+    added  steps
+
+commit 151d67d49f1a31993515286eccbb5f1fdea49860
+Author: haythammohamd <71211485+HaythamMohamd@users.noreply.github.com>
+Date:   Tue Jun 16 19:18:10 2026 +0300
+
+    Initial commit
+
+
+haytham@server:~/git-sami$ ## to make the commit open with vim
+haytham@server:~/git-sami$ git config --global core.edior vim 
+haytham@server:~/git-sami$ git commit
+[main f470813] Third line added
+ 1 file changed, 2 insertions(+)
+haytham@server:~/git-sami$ git log 
+commit f4708131848cae95c640b9ce73b75676d1598b88 (HEAD -> main)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:12:20 2026 +0300
+
+    Third line added
+
+commit 33ca0b34963ecd89db14227a477ed93fe2c916f8
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:01:12 2026 +0300
+
+    Added file.txt
+
+commit a0147301319dd4751004b5fef3cce6f4cc3a6614 (origin/main, origin/HEAD)
+Author: Haytham <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 21:49:10 2026 +0300
+
+    added  steps
+
+commit 151d67d49f1a31993515286eccbb5f1fdea49860
+Author: haythammohamd <71211485+HaythamMohamd@users.noreply.github.com>
+Date:   Tue Jun 16 19:18:10 2026 +0300
+
+    Initial commit
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ ### git log
+haytham@server:~/git-sami$ git log
+commit f4708131848cae95c640b9ce73b75676d1598b88 (HEAD -> main)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:12:20 2026 +0300
+
+    Third line added
+
+commit 33ca0b34963ecd89db14227a477ed93fe2c916f8
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:01:12 2026 +0300
+
+    Added file.txt
+
+commit a0147301319dd4751004b5fef3cce6f4cc3a6614 (origin/main, origin/HEAD)
+Author: Haytham <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 21:49:10 2026 +0300
+
+    added  steps
+
+commit 151d67d49f1a31993515286eccbb5f1fdea49860
+Author: haythammohamd <71211485+HaythamMohamd@users.noreply.github.com>
+Date:   Tue Jun 16 19:18:10 2026 +0300
+
+    Initial commit
+haytham@server:~/git-sami$ git log --oneline
+f470813 (HEAD -> main) Third line added
+33ca0b3 Added file.txt
+a014730 (origin/main, origin/HEAD) added  steps
+151d67d Initial commit
+haytham@server:~/git-sami$ git log --oneline file.txt
+f470813 (HEAD -> main) Third line added
+33ca0b3 Added file.txt
+haytham@server:~/git-sami$ git log --oneline -2
+f470813 (HEAD -> main) Third line added
+33ca0b3 Added file.txt
+haytham@server:~/git-sami$ git show f470813
+commit f4708131848cae95c640b9ce73b75676d1598b88 (HEAD -> main)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:12:20 2026 +0300
+
+    Third line added
+
+diff --git a/file.txt b/file.txt
+index b7aec52..8481662 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1,3 @@
+ Hello, Git
++Second line in file.txt
++Third line in file.txt
+haytham@server:~/git-sami$ git log --oneline --graph
+* f470813 (HEAD -> main) Third line added
+* 33ca0b3 Added file.txt
+* a014730 (origin/main, origin/HEAD) added  steps
+* 151d67d Initial commit
+haytham@server:~/git-sami$ git diff 33ca0b3..f470813
+diff --git a/file.txt b/file.txt
+index b7aec52..8481662 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1 +1,3 @@
+ Hello, Git
++Second line in file.txt
++Third line in file.txt
+```
