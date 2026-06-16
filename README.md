@@ -174,3 +174,7 @@ haytham@server:~/git-sami$ git cat-file -p c7a6
 100644 blob 82bc437851ca3e4bb6f8a67073a9a03b90b7f332    image-3.png
 100644 blob 16000abd9a2251fd921aa3917e1a3f1f32886747    image.png
 ```
+
+### gir is working as linked list
+<img width="727" height="282" alt="image" src="https://github.com/user-attachments/assets/4cf6f1ee-2cac-4456-8403-a7536d267117" />
+
