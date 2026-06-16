@@ -563,6 +563,9 @@ haytham@server:~/git-sami$
 ```
 
 ### tags
+<img width="819" height="598" alt="image" src="https://github.com/user-attachments/assets/e3b98876-7b29-40c4-8115-6a684f3366cc" />
+
+
 ```bash
 haytham@server:~/git-sami$ ### tags 
 haytham@server:~/git-sami$ # 01 lightweight
