@@ -561,3 +561,57 @@ ed6b283 Third line added to file.txt --update
 haytham@server:~/git-sami$ 
 
 ```
+
+### tags
+```bash
+haytham@server:~/git-sami$ ### tags 
+haytham@server:~/git-sami$ # 01 lightweight
+haytham@server:~/git-sami$ # 02 annotated 
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ echo "Fifth line in file" >> file.txt 
+haytham@server:~/git-sami$ git commit -am "Fifth line added to file.txt"
+[master 237e1e4] Fifth line added to file.txt
+ 1 file changed, 4 insertions(+)
+haytham@server:~/git-sami$ git log --oneline 
+237e1e4 (HEAD -> master) Fifth line added to file.txt
+c4f50ba Fourth line added to file.txt
+ed6b283 Third line added to file.txt --update
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami$ git tag -a v2.0 -m "version 2.0 of the file"
+haytham@server:~/git-sami$ git log --oneline 
+237e1e4 (HEAD -> master, tag: v2.0) Fifth line added to file.txt
+c4f50ba Fourth line added to file.txt
+ed6b283 Third line added to file.txt --update
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami$ git tag 
+v2.0
+haytham@server:~/git-sami$ git show v2.0 
+tag v2.0
+Tagger: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 23:05:38 2026 +0300
+
+version 2.0 of the file
+
+commit 237e1e4ba388b5d6d9c83f011822fbff7a202475 (HEAD -> master, tag: v2.0)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 23:04:58 2026 +0300
+
+    Fifth line added to file.txt
+
+diff --git a/file.txt b/file.txt
+index 52e1b49..dee2a69 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1,4 +1,8 @@
+ Hello, Git
++<<<<<<< HEAD
+ Second line in file
+ Third line in file
+ Fourth line in file
++=======
++>>>>>>> parent of 9deb475 (Second line added to file.txt)
++Fifth line in file
+haytham@server:~/git-sami$ 
+```
