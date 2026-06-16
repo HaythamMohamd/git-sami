@@ -357,4 +357,44 @@ index b7aec52..8481662 100644
  Hello, Git
 +Second line in file.txt
 +Third line in file.txt
+
+
+
+
+haytham@server:~/git-sami$ ## if you forget add file or missed up the commit msg
+haytham@server:~/git-sami$ git commit --amend
+[main 79def9a] Third line added - edited with 'git commit --amend'
+ Date: Tue Jun 16 22:12:20 2026 +0300
+ 1 file changed, 2 insertions(+)
+haytham@server:~/git-sami$ git log --oneline 
+79def9a (HEAD -> main) Third line added - edited with 'git commit --amend'
+33ca0b3 Added file.txt
+a014730 (origin/main, origin/HEAD) added  steps
+151d67d Initial commit
+haytham@server:~/git-sami$ 
+```
+
+### restore from working dir
+```bash
+haytham@server:~/git-sami$ echo "First line in file" >> file.txt 
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ cat file.txt 
+Hello, Git
+First line in file
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ git status 
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ ## el file dah f el working dir, need to restore it
+haytham@server:~/git-sami$ git restore file.txt 
+haytham@server:~/git-sami$ git status 
+On branch master
+nothing to commit, working tree clean
+haytham@server:~/git-sami$ 
 ```
