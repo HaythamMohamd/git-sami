@@ -480,6 +480,7 @@ ed6b283 Third line added to file.txt --update
 
 ### HEAD pointer
 <img width="688" height="386" alt="image" src="https://github.com/user-attachments/assets/be471819-0934-4c1b-9c51-e8e3a337cacd" />
+
 ```bash
 haytham@server:~/git-sami$ ## el HEAD dah pointer byshawer 3la a5er sha commit 
 haytham@server:~/git-sami$ cd .git/
