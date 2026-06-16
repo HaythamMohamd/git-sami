@@ -477,3 +477,50 @@ ed6b283 Third line added to file.txt --update
 9deb475 Second line added to file.txt
 6a7f896 Initial commit
 ```
+
+### HEAD pointer
+<img width="688" height="386" alt="image" src="https://github.com/user-attachments/assets/be471819-0934-4c1b-9c51-e8e3a337cacd" />
+```bash
+haytham@server:~/git-sami$ ## el HEAD dah pointer byshawer 3la a5er sha commit 
+haytham@server:~/git-sami$ cd .git/
+haytham@server:~/git-sami/.git$ ll
+total 28
+-rw-r--r--.  1 haytham haytham   30 Jun 16 22:36 COMMIT_EDITMSG
+-rw-r--r--.  1 haytham haytham   92 Jun 16 22:23 config
+-rw-r--r--.  1 haytham haytham   73 Jun 16 22:23 description
+-rw-r--r--.  1 haytham haytham   23 Jun 16 22:23 HEAD
+drwxr-xr-x.  2 haytham haytham 4096 Jun 16 22:23 hooks
+-rw-r--r--.  1 haytham haytham  521 Jun 16 22:36 index
+drwxr-xr-x.  2 haytham haytham   21 Jun 16 22:23 info
+drwxr-xr-x.  3 haytham haytham   30 Jun 16 22:23 logs
+drwxr-xr-x. 22 haytham haytham 4096 Jun 16 22:36 objects
+drwxr-xr-x.  4 haytham haytham   31 Jun 16 22:23 refs
+haytham@server:~/git-sami/.git$ cat HEAD 
+ref: refs/heads/master
+haytham@server:~/git-sami/.git$ cd refs/heads/
+haytham@server:~/git-sami/.git/refs/heads$ ls
+master
+haytham@server:~/git-sami/.git/refs/heads$ cat master 
+c4f50ba6e08020de8a8ecc094224527b9b2ef9b0
+haytham@server:~/git-sami/.git/refs/heads$ git log --oneline 
+c4f50ba (HEAD -> master) Fourth line added to file.txt
+ed6b283 Third line added to file.txt --update
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami/.git/refs/heads$ git show c4f50ba
+commit c4f50ba6e08020de8a8ecc094224527b9b2ef9b0 (HEAD -> master)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:36:24 2026 +0300
+
+    Fourth line added to file.txt
+
+diff --git a/file.txt b/file.txt
+index 2bdb204..52e1b49 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1,3 +1,4 @@
+ Hello, Git
+ Second line in file
+ Third line in file
++Fourth line in file
+```
