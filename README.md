@@ -641,3 +641,184 @@ haytham@server:~/git-sami$ graph
 <img width="788" height="612" alt="image" src="https://github.com/user-attachments/assets/c6aa3e30-f727-44f3-a49a-0e996c41a414" />
 
 
+```bash
+haytham@server:~/git-sami$ ## to create new branch
+haytham@server:~/git-sami$ git branch 
+* master
+haytham@server:~/git-sami$ git branch testing
+haytham@server:~/git-sami$ git branch 
+* master
+  testing
+haytham@server:~/git-sami$ git switch testing 
+Switched to branch 'testing'
+haytham@server:~/git-sami$ git branch 
+  master
+* testing
+haytham@server:~/git-sami$
+
+## hena el head bases 3la el branch , ay t3deel hykon 3la el test branch 
+haytham@server:~/git-sami$ graph
+* 2d3d5f8 (HEAD -> testing, master) Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+
+haytham@server:~/git-sami$ echo "Fourth line in file" >> file.txt
+haytham@server:~/git-sami$ git commit -am "Fourth line added to file.txt"
+[testing ef7c59c] Fourth line added to file.txt
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ graph
+* ef7c59c (HEAD -> testing) Fourth line added to file.txt
+* 2d3d5f8 (master) Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+haytham@server:~/git-sami$
+
+# hena el head 3la el branch
+haytham@server:~/git-sami$ git show head
+fatal: ambiguous argument 'head': unknown revision or path not in the working tree.
+Use '--' to separate paths from revisions, like this:
+'git <command> [<revision>...] -- [<file>...]'
+haytham@server:~/git-sami$ git show HEAD
+commit ef7c59cc334a3ea6f5550c71f542a98435e3331e (HEAD -> testing)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 23:18:43 2026 +0300
+
+    Fourth line added to file.txt
+
+diff --git a/file.txt b/file.txt
+index a99ffdf..fae3f86 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1,3 +1,4 @@
+ Hello, Git 
+ Second line in file
+ Third line in file
++Fourth line in file
+
+## hens swith to master
+haytham@server:~/git-sami$ git switch master 
+Switched to branch 'master'
+haytham@server:~/git-sami$ git show HEAD
+commit 2d3d5f85d932b0069c8625c0659f7f353ebe1ef9 (HEAD -> master)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 23:14:41 2026 +0300
+
+    Third line added to file.txt
+
+diff --git a/file.txt b/file.txt
+index 1abe02c..a99ffdf 100644
+--- a/file.txt
++++ b/file.txt
+@@ -1,2 +1,3 @@
+ Hello, Git 
+ Second line in file
++Third line in file
+
+haytham@server:~/git-sami$ git switch testing 
+Switched to branch 'testing'
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ graph
+* ef7c59c (HEAD -> testing) Fourth line added to file.txt
+* 2d3d5f8 (master) Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ ### to merge ==> got to master ==> then merge testing branch 
+haytham@server:~/git-sami$ git switch master 
+Switched to branch 'master'
+haytham@server:~/git-sami$ git merge testing 
+Updating 2d3d5f8..ef7c59c
+Fast-forward
+ file.txt | 1 +
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ graph
+* ef7c59c (HEAD -> master, testing) Fourth line added to file.txt
+* 2d3d5f8 Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+haytham@server:~/git-sami$ 
+
+
+haytham@server:~/git-sami$ ## to delete branch
+haytham@server:~/git-sami$ git branch -d testing
+Deleted branch testing (was ef7c59c).
+haytham@server:~/git-sami$ git branch 
+* master
+haytham@server:~/git-sami$
+
+##### another scenario
+# edit file1 on testing branch
+# add new file on master branch
+# merge
+
+haytham@server:~/git-sami$ git branch testing
+haytham@server:~/git-sami$ git switch testing 
+Switched to branch 'testing'
+haytham@server:~/git-sami$ graph
+* ef7c59c (HEAD -> testing, master) Fourth line added to file.txt
+* 2d3d5f8 Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+haytham@server:~/git-sami$ echo "Fifth line in file" >> file.txt
+haytham@server:~/git-sami$ git commit -am "Fifth line added to file.txt"
+[testing 946667b] Fifth line added to file.txt
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ graph
+* 946667b (HEAD -> testing) Fifth line added to file.txt
+* ef7c59c (master) Fourth line added to file.txt
+* 2d3d5f8 Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+haytham@server:~/git-sami$ git switch master
+Switched to branch 'master'
+haytham@server:~/git-sami$ echo "Line one in new file" >> file2.txt
+haytham@server:~/git-sami$ git add .
+haytham@server:~/git-sami$ git commit -am "New file added in master branch"
+[master 05fd141] New file added in master branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file2.txt
+haytham@server:~/git-sami$ graph
+* 05fd141 (HEAD -> master) New file added in master branch
+| * 946667b (testing) Fifth line added to file.txt
+|/  
+* ef7c59c Fourth line added to file.txt
+* 2d3d5f8 Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+haytham@server:~/git-sami$ git switch master 
+Already on 'master'
+haytham@server:~/git-sami$ git merge testing 
+Merge made by the 'ort' strategy.
+ file.txt | 1 +
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ graph 
+*   db28c78 (HEAD -> master) Merge branch 'testing'
+|\  
+| * 946667b (testing) Fifth line added to file.txt
+* | 05fd141 New file added in master branch
+|/  
+* ef7c59c Fourth line added to file.txt
+* 2d3d5f8 Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+
+haytham@server:~/git-sami$ git branch -d testing 
+Deleted branch testing (was 946667b).
+haytham@server:~/git-sami$ git branch 
+* master
+
+```
+
+### Merge Conflicts
+If you try to do merge commit with conflicting files in both branches git will notify you and abort the process To check the conflicting portions of the file use git status then resolve the conflict then commit then merge again
+```bash
+git branch -v # to list all branches along with the last commit per each branch. * character indicates the current HEAD pointer
+!git branch --merged # to view branches already merged with the current branch
+!git branch --no-merged # list all branches that aren't merged with the current
+!git branch -d testing # will attempt to delete the testing branch but will fail if it has unmerged work
+!git branch -D testing # will forcibly delete the testing branch even if it has unmerged work
+!git branch --move bad-branch-name corrected-branch-name # rename a branch. CAREFUL not to rename a branch currently shared
+!git branch --move master main # you can also rename the master branch as it is exactly similar to any other branch
+```
+
