@@ -398,3 +398,82 @@ On branch master
 nothing to commit, working tree clean
 haytham@server:~/git-sami$ 
 ```
+
+### restore from staging or index to working dir
+```bash
+haytham@server:~/git-sami$ ## edit the file 
+haytham@server:~/git-sami$ vim file.txt 
+haytham@server:~/git-sami$ echo "Second line in file" >> file.txt 
+haytham@server:~/git-sami$ cat file.txt 
+Hello, Git
+Second line in file
+haytham@server:~/git-sami$ git status 
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+haytham@server:~/git-sami$ git add .
+haytham@server:~/git-sami$ git status 
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   file.txt
+
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ ### to restore from stage or index 
+haytham@server:~/git-sami$ git restore --staged file.txt 
+haytham@server:~/git-sami$ git status 
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+haytham@server:~/git-sami$ git commit -am "Second line added to file.txt"
+[master 9deb475] Second line added to file.txt
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ git log --oneline 
+9deb475 (HEAD -> master) Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami$ echo "Third line in file" >> file.txt 
+haytham@server:~/git-sami$ git commit -am "Third line added to file.txt"
+[master df20514] Third line added to file.txt
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ git log --oneline 
+df20514 (HEAD -> master) Third line added to file.txt
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+
+
+
+haytham@server:~/git-sami$ git log --oneline 
+df20514 (HEAD -> master) Third line added to file.txt
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami$ 
+haytham@server:~/git-sami$ git commit --amend
+[master ed6b283] Third line added to file.txt --update
+ Date: Tue Jun 16 22:34:26 2026 +0300
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ git log --oneline 
+ed6b283 (HEAD -> master) Third line added to file.txt --update
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami$
+
+
+haytham@server:~/git-sami$ echo "Fourth line in file" >> file.txt 
+haytham@server:~/git-sami$ git commit -am "Fourth line added to file.txt"
+[master c4f50ba] Fourth line added to file.txt
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ git log --oneline 
+c4f50ba (HEAD -> master) Fourth line added to file.txt
+ed6b283 Third line added to file.txt --update
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+```
