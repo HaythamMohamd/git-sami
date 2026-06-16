@@ -114,3 +114,63 @@ root@Haytham:/mnt/d/HandsOn/git-sami/gitwork/.git/objects# ls
 15  42  b7  info  pack
 root@Haytham:/mnt/d/HandsOn/git-sami/gitwork/.git/objects# 
 ```
+
+### LAB02
+```bash
+haytham@server:~/git-sami$ vim file.txt
+haytham@server:~/git-sami$ cat file.txt 
+Hello, Git
+haytham@server:~/git-sami$ git status 
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+haytham@server:~/git-sami$ git status -s
+?? file.txt
+haytham@server:~/git-sami$ git add file.txt 
+haytham@server:~/git-sami$ git status -s
+A  file.txt
+haytham@server:~/git-sami$ git commit -m "Added file.txt"
+[main 33ca0b3] Added file.txt
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file.txt
+haytham@server:~/git-sami$ git log
+commit 33ca0b34963ecd89db14227a477ed93fe2c916f8 (HEAD -> main)
+Author: haytham.mo7amed <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 22:01:12 2026 +0300
+
+    Added file.txt
+
+commit a0147301319dd4751004b5fef3cce6f4cc3a6614 (origin/main, origin/HEAD)
+Author: Haytham <haytham.mo7amed@gmail.com>
+Date:   Tue Jun 16 21:49:10 2026 +0300
+
+    added  steps
+
+commit 151d67d49f1a31993515286eccbb5f1fdea49860
+Author: haythammohamd <71211485+HaythamMohamd@users.noreply.github.com>
+Date:   Tue Jun 16 19:18:10 2026 +0300
+
+    Initial commit
+haytham@server:~/git-sami$ find .git/objects/ -type f
+.git/objects/pack/pack-9ce473bfff77765fd8aa15ecbaec5fba4268875c.pack
+.git/objects/pack/pack-9ce473bfff77765fd8aa15ecbaec5fba4268875c.rev
+.git/objects/pack/pack-9ce473bfff77765fd8aa15ecbaec5fba4268875c.idx
+.git/objects/b7/aec520dec0a7516c18eb4c68b64ae1eb9b5a5e
+.git/objects/c7/a67c32b3307681733613dc013f7c532b094886
+.git/objects/33/ca0b34963ecd89db14227a477ed93fe2c916f8
+haytham@server:~/git-sami$ git cat-file -p b7ae
+Hello, Git
+haytham@server:~/git-sami$ git cat-file -p c7a6
+100644 blob 69b537a942d9aec17971d0ad1c48c54d6f0b7252    README.md
+100644 blob b7aec520dec0a7516c18eb4c68b64ae1eb9b5a5e    file.txt
+160000 commit 4207fd46da9cee8fd8a31f179e7bb7e926bd2ce1  gitwork
+100644 blob 16000abd9a2251fd921aa3917e1a3f1f32886747    image-1.png
+100644 blob ad9cafa081f16e1f4f222cbf73b97817b3bc0826    image-2.png
+100644 blob 82bc437851ca3e4bb6f8a67073a9a03b90b7f332    image-3.png
+100644 blob 16000abd9a2251fd921aa3917e1a3f1f32886747    image.png
+```
