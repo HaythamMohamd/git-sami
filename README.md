@@ -525,3 +525,39 @@ index 2bdb204..52e1b49 100644
  Third line in file
 +Fourth line in file
 ```
+
+### git reset with HEAD
+```bash
+haytham@server:~/git-sami$ ### git reset with head
+haytham@server:~/git-sami$ git log --oneline 
+c4f50ba (HEAD -> master) Fourth line added to file.txt
+ed6b283 Third line added to file.txt --update
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami$ git reset --hard HEAD~1
+HEAD is now at ed6b283 Third line added to file.txt --update
+haytham@server:~/git-sami$ git log --oneline 
+ed6b283 (HEAD -> master) Third line added to file.txt --update
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami$
+
+
+haytham@server:~/git-sami$ ### 3shan a3raf el old HEAD kan 3la meen
+haytham@server:~/git-sami$ git reflog 
+ed6b283 (HEAD -> master) HEAD@{0}: reset: moving to HEAD~1
+c4f50ba HEAD@{1}: commit: Fourth line added to file.txt
+ed6b283 (HEAD -> master) HEAD@{2}: commit (amend): Third line added to file.txt --update
+df20514 HEAD@{3}: commit: Third line added to file.txt
+9deb475 HEAD@{4}: commit: Second line added to file.txt
+6a7f896 HEAD@{5}: commit (initial): Initial commit
+haytham@server:~/git-sami$ git reset --hard HEAD@{1}
+HEAD is now at c4f50ba Fourth line added to file.txt
+haytham@server:~/git-sami$ git log --oneline 
+c4f50ba (HEAD -> master) Fourth line added to file.txt
+ed6b283 Third line added to file.txt --update
+9deb475 Second line added to file.txt
+6a7f896 Initial commit
+haytham@server:~/git-sami$ 
+
+```
