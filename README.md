@@ -618,3 +618,26 @@ index 52e1b49..dee2a69 100644
 +Fifth line in file
 haytham@server:~/git-sami$ 
 ```
+
+### alias graph
+```bash
+haytham@server:~/git-sami$ alias graph='git log --oneline --decorate --graph --all'
+haytham@server:~/git-sami$ graph
+* a6f0906 (HEAD -> master) Second line added to file.txt
+* 16cd735 Initial commit
+haytham@server:~/git-sami$
+haytham@server:~/git-sami$ echo "Third line in file" >> file.txt
+haytham@server:~/git-sami$ git commit -am "Third line added to file.txt"
+[master 2d3d5f8] Third line added to file.txt
+ 1 file changed, 1 insertion(+)
+haytham@server:~/git-sami$ graph
+* 2d3d5f8 (HEAD -> master) Third line added to file.txt
+* a6f0906 Second line added to file.txt
+* 16cd735 Initial commit
+
+```
+
+### Branches
+<img width="788" height="612" alt="image" src="https://github.com/user-attachments/assets/c6aa3e30-f727-44f3-a49a-0e996c41a414" />
+
+
