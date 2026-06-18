@@ -827,3 +827,128 @@ git branch -v # to list all branches along with the last commit per each branch.
 the clone is a copy from the repo
 <img width="838" height="367" alt="image" src="https://github.com/user-attachments/assets/95ec570d-5685-446e-9fbb-116eeac65be0" />
 
+```bash
+haytham@Haythams-MacBook-Pro git-sami % mkdir remote-repo
+haytham@Haythams-MacBook-Pro git-sami % cd remote-repo 
+haytham@Haythams-MacBook-Pro remote-repo % echo "first line in file1.txt" >> file1.txt
+haytham@Haythams-MacBook-Pro remote-repo % git init 
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint:   git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint:   git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /Users/haytham/myData/git-sami/remote-repo/.git/
+haytham@Haythams-MacBook-Pro remote-repo % git add .
+haytham@Haythams-MacBook-Pro remote-repo % git commit -am "Intial commit"
+[master (root-commit) 95196ef] Intial commit
+ Committer: Haytham Awadallah <haytham@Haythams-MacBook-Pro.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+ create mode 100644 file1.txt
+haytham@Haythams-MacBook-Pro remote-repo % pwd
+/Users/haytham/myData/git-sami/remote-repo
+haytham@Haythams-MacBook-Pro remote-repo % cd ..
+haytham@Haythams-MacBook-Pro git-sami % cd ..
+haytham@Haythams-MacBook-Pro myData % mkdir local-repo
+haytham@Haythams-MacBook-Pro myData % cd local-repo 
+haytham@Haythams-MacBook-Pro local-repo % 
+haytham@Haythams-MacBook-Pro local-repo % git clone /Users/haytham/myData/git-sami/remote-repo
+Cloning into 'remote-repo'...
+done.
+haytham@Haythams-MacBook-Pro local-repo % ls
+remote-repo
+haytham@Haythams-MacBook-Pro local-repo % cd lo
+cd: no such file or directory: lo
+haytham@Haythams-MacBook-Pro local-repo % ls
+remote-repo
+haytham@Haythams-MacBook-Pro local-repo % git remote
+fatal: not a git repository (or any of the parent directories): .git
+haytham@Haythams-MacBook-Pro local-repo % git remote -v
+fatal: not a git repository (or any of the parent directories): .git
+haytham@Haythams-MacBook-Pro local-repo % cd remote-repo 
+haytham@Haythams-MacBook-Pro remote-repo % git remote -v 
+origin  /Users/haytham/myData/git-sami/remote-repo (fetch)
+origin  /Users/haytham/myData/git-sami/remote-repo (push)
+haytham@Haythams-MacBook-Pro remote-repo % git log --oneline
+95196ef (HEAD -> master, origin/master, origin/HEAD) Intial commit
+haytham@Haythams-MacBook-Pro remote-repo % echo "Second line in file1.txt at remote" >> /Users/haytham/myData/git-sami/remote-repo/file1.txt
+haytham@Haythams-MacBook-Pro remote-repo % cd /Users/haytham/myData/git-sami/remote-repo/         
+haytham@Haythams-MacBook-Pro remote-repo % git commit -am "Second commit in remote" 
+[master 77f92d3] Second commit in remote
+ Committer: Haytham Awadallah <haytham@Haythams-MacBook-Pro.local>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 1 insertion(+)
+haytham@Haythams-MacBook-Pro remote-repo % cd ../../local-repo 
+haytham@Haythams-MacBook-Pro local-repo % cd remote-repo 
+haytham@Haythams-MacBook-Pro remote-repo % git brach
+git: 'brach' is not a git command. See 'git --help'.
+
+The most similar command is
+        branch
+haytham@Haythams-MacBook-Pro remote-repo % git branch
+* master
+haytham@Haythams-MacBook-Pro remote-repo % git branch -r
+  origin/HEAD -> origin/master
+  origin/master
+haytham@Haythams-MacBook-Pro remote-repo % git fetch origin 
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 289 bytes | 289.00 KiB/s, done.
+From /Users/haytham/myData/git-sami/remote-repo
+   95196ef..77f92d3  master     -> origin/master
+haytham@Haythams-MacBook-Pro remote-repo % cat file1.txt 
+first line in file1.txt
+haytham@Haythams-MacBook-Pro remote-repo % git log --oneline
+95196ef (HEAD -> master) Intial commit
+haytham@Haythams-MacBook-Pro remote-repo % git pull origin  
+Updating 95196ef..77f92d3
+Fast-forward
+ file1.txt | 1 +
+ 1 file changed, 1 insertion(+)
+haytham@Haythams-MacBook-Pro remote-repo % cat file1.txt    
+first line in file1.txt
+Second line in file1.txt at remote
+haytham@Haythams-MacBook-Pro remote-repo % git log --oneline
+77f92d3 (HEAD -> master, origin/master, origin/HEAD) Second commit in remote
+95196ef Intial commit
+haytham@Haythams-MacBook-Pro remote-repo % git cat-file -p 77f92d3
+tree 3922fa64df8857347889d5fcdc5c7da6013fb49a
+parent 95196efafbab6fc88f22196182c9144e5011db4a
+author Haytham Awadallah <haytham@Haythams-MacBook-Pro.local> 1781780558 +0300
+committer Haytham Awadallah <haytham@Haythams-MacBook-Pro.local> 1781780558 +0300
+
+Second commit in remote
+
+```
