@@ -822,3 +822,8 @@ git branch -v # to list all branches along with the last commit per each branch.
 !git branch --move master main # you can also rename the master branch as it is exactly similar to any other branch
 ```
 
+
+### Working with remote
+the clone is a copy from the repo
+<img width="838" height="367" alt="image" src="https://github.com/user-attachments/assets/95ec570d-5685-446e-9fbb-116eeac65be0" />
+
